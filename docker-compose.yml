@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  frontend:
+    image: "php:7.1.29-neos"
+    restart: "always"
+    ports:
+      - "8080:80"
+    extra_hosts:
+      - "neos:127.0.0.1"
+  db:
+    image: "mariadb:10.3.15-bionic"
+    command: "mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+    restart: "always"
+    environment:
+    ports:
+      - "3306:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=test"
+      - "MYSQL_DATABASE=test"
+      - "MYSQL_USER=testuser"
+      - "MYSQL_PASSWORD=test"

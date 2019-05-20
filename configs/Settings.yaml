@@ -1,0 +1,15 @@
+#
+# FIXME: we'll have to introduce a mechanism to align the backendOptions
+#        with what docker-compose.yml is using - static for now
+#
+Neos:
+  Imagine:
+    driver: "Imagick"
+  Flow:
+    persistence:
+      backendOptions:
+        driver: "pdo_mysql"
+        dbname: "test"
+        user: "root"
+        password: "test"
+        host: "db"

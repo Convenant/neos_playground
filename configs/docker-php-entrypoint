@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+#
+# FIXME: static for now, this is just serving as a POC
+#
+/var/www/html/Neos/flow doctrine:migrate
+/var/www/html/Neos/flow site:import --package-key=Neos.Demo
+/var/www/html/Neos/flow user:create jagger ficken100 Tommy Tomate --roles Neos.Neos:Administrator
+chown -R www-data:www-data /var/www/html/Neos
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- apache2-foreground "$@"
+fi
+
+exec "$@"
